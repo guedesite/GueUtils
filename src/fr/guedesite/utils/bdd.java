@@ -28,6 +28,8 @@ public class bdd {
 	private  Map<Integer, Statement> s = new HashMap<Integer, Statement>();
 	private int Id = 0;
 	
+	private ResultSet lastExist;
+	
 	
 	
 	
@@ -192,15 +194,15 @@ public class bdd {
 		int id = GetFreeId();
 		if(this.s.containsKey(id))
 		{
-			ResultSet r = query(query, id);
+			this.lastExist = query(query, id);
 			if(this.IsDebug)
 			{
 				System.out.println("[BDD DEBUG] EXIST: "+query);
 			}
-			if(r != null)
+			if(this.lastExist != null)
 			{
 				try {
-					while(r.next())
+					while(this.lastExist.next())
 					{
 						CloseFreeId(id);
 						return true;
@@ -219,6 +221,12 @@ public class bdd {
 		}
 		CloseFreeId(id);
 		return false;
+	}
+	
+	public ResultSet getLastExist() throws SQLException
+	{
+		this.lastExist.first();
+		return this.lastExist;
 	}
 	
 	public ResultSet query(String query, int id)
@@ -422,7 +430,7 @@ public class bdd {
 	
 	private UpdateProtocoleExtended UpdateProtocole = new UpdateProtocoleExtended();
 	//extended
-	public class UpdateProtocoleExtended {
+	public class UpdateProtocoleExtended{
 		public boolean update(bdd b, String table, Object[] obj, String cond)
 		{
 			if(obj.length % 2 == 0)

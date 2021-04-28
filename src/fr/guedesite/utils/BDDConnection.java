@@ -1,6 +1,10 @@
 package fr.guedesite.utils;
 
+import java.io.IOException;
 import java.io.Serializable;
+
+import fr.guedesite.utils.nbt.io.NBTUtil;
+import fr.guedesite.utils.nbt.tag.CompoundTag;
 
 public class BDDConnection implements Serializable{
 
@@ -25,5 +29,18 @@ public class BDDConnection implements Serializable{
 	
 	public String getUser() {
 		return User;
+	}
+	
+	public static void main(String[] arg) {
+		CompoundTag tag = new CompoundTag();
+		tag.putString("url", "");
+		tag.putString("user", "");
+		tag.putString("mdp", "");
+		try {
+			NBTUtil.write(tag, "bdd.dat");
+			System.out.println("Success");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

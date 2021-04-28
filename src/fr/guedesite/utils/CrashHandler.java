@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class CrashHandler {
 	
-private static final String path = new String("ModCrash/");
+private static final String path = new String("Crash/");
 	
 	private static Exception last;
 	
