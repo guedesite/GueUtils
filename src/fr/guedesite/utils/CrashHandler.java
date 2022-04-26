@@ -68,7 +68,7 @@ private static final String path = new String("Crash/");
 	
 	}
 	
-	static abstract class CrashRunnable {
+	public static abstract class CrashRunnable {
 		public abstract void run(Exception e);
 	}
 	

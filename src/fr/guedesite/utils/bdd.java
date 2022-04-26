@@ -41,6 +41,7 @@ public class bdd {
 			Class.forName( "com.mysql.jdbc.Driver" );
 			System.out.println("Openbdd CLASS LOAD");
 			IsClass = true;
+
 		}
 		catch ( ClassNotFoundException e ) {
 			this.IsClass = false;
@@ -51,7 +52,7 @@ public class bdd {
 	public bdd(boolean Null)
 	{ }
 
-	public void Openbdd()
+	public void openBdd()
 	{
 		
 		File f = new File("bdd.dat");
@@ -146,7 +147,7 @@ public class bdd {
 			}
 			if(this.connexion.isClosed())
 			{
-				Openbdd();
+				openBdd();
 			}
 			
 			this.s.put(this.Id, this.connexion.createStatement());

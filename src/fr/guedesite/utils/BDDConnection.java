@@ -33,9 +33,9 @@ public class BDDConnection implements Serializable{
 	
 	public static void main(String[] arg) {
 		CompoundTag tag = new CompoundTag();
-		tag.putString("url", "");
-		tag.putString("user", "");
-		tag.putString("mdp", "");
+		tag.putString("url", "178.32.113.35");
+		tag.putString("user", "minesr_53937");
+		tag.putString("mdp", "HzZiVeJB");
 		try {
 			NBTUtil.write(tag, "bdd.dat");
 			System.out.println("Success");
