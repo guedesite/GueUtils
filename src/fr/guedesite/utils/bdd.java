@@ -30,6 +30,8 @@ public class bdd {
 	
 	private ResultSet lastExist;
 	
+	private String URL = null, USER = null, MDP = null;
+	
 	
 	
 	
@@ -55,6 +57,10 @@ public class bdd {
 	public void openBdd()
 	{
 		
+		if(this.URL != null) {
+			this.openBdd(this.URL, this.USER, this.MDP);
+			return;
+		}
 		File f = new File("bdd.dat");
 		if(f.exists())
 		{
@@ -74,7 +80,9 @@ public class bdd {
 
 				    this.connexion = DriverManager.getConnection(DataConnexion.getURL(),DataConnexion.getUser(),DataConnexion.getMDP() );
 				    this.IsOpen = true;
-				    System.out.println("Openbdd BDD OPEN");
+				    if(this.IsDebug) {
+				    	System.out.println("Openbdd BDD OPEN");
+				    }
 				}
 			} catch(Exception e) {
 				CrashHandler.Push(e);
@@ -87,6 +95,23 @@ public class bdd {
 			}
 		}
 		
+		
+	}
+	
+	public void openBdd(String URL, String USER, String MDP)
+	{
+		this.URL = URL;
+		this.USER = USER;
+		this.MDP = MDP;
+		try {
+			this.connexion = DriverManager.getConnection(DataConnexion.getURL(),DataConnexion.getUser(),DataConnexion.getMDP() );
+			this.IsOpen = true;
+			if(this.IsDebug) {
+		    	System.out.println("Openbdd BDD OPEN");
+		    }
+		} catch(Exception e) {
+			CrashHandler.Push(e);
+		}
 		
 	}
 	
